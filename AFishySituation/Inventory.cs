@@ -53,6 +53,7 @@ namespace AFishySituation
                 Fish f = fish[0];
                 soldFish?.Invoke(f.CalculateSellPrice());
                 Console.WriteLine($"Vendiste {f.name} por ${f.CalculateSellPrice()}");
+                RemoveFish(f);
             }
             else
             {

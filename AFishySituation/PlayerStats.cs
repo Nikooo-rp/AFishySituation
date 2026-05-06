@@ -36,7 +36,11 @@ namespace AFishySituation
             Console.WriteLine($"Peces atrapados: {totalFishCaught}");
             Console.WriteLine($"Oro ganado: {totalGoldEarned}");
             Console.WriteLine($"Oro gastado: {goldSpent}");
-            Console.WriteLine($"Caña actual: {player.rod.name}");
+            if (player.rod != null)
+            {
+                Console.WriteLine($"Caña actual: {player.rod.name}");
+                Console.WriteLine(player.rod.description);
+            }
             Console.ReadLine();
         }
     }
