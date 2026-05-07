@@ -71,6 +71,7 @@ namespace AFishySituation
 
         public void Display()
         {
+            Console.Clear();
             if (fish.Count == 0)
             {
                 Console.WriteLine("El inventario está vacío.");
@@ -79,8 +80,9 @@ namespace AFishySituation
             }
 
             Console.WriteLine("Inventario:");
-            foreach (Fish f in fish)
+            for (int i = 0; i < fish.Count; i++)
             {
+                Fish f = fish[i];
                 Console.WriteLine($" ");
                 switch (f.rarity)
                 {
@@ -100,12 +102,18 @@ namespace AFishySituation
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         break;
                 }
-                Console.WriteLine($"- {f.name} ({f.rarity}, {f.CalculateSellPrice()})");
+                string line = string.Empty;
+                if (f.isFavorite)
+                    line += "(Fav) ";
+
+                line += $"({i + 1}) {f.name} ({f.rarity}, {f.CalculateSellPrice()})";
+                Console.WriteLine(line);
                 Console.ResetColor();
             }
             Console.WriteLine(isFull() ? "El inventario está lleno." : $"Espacio utilizado: {fish.Count}/{maxSlots}");
             Console.WriteLine($"Valor total: ${GetTotalValue()}");
-            Console.ReadKey();
+
+            //FavoriteFish();
         }
 
         public bool isFull()
@@ -122,5 +130,31 @@ namespace AFishySituation
             }
             return totalValue;
         }
+
+        //public void FavoriteFish() i give up
+        //{
+        //    Console.WriteLine("\n Ingresa el número de un pez para agregarlo/quitarlo de tus favoritos...\n Presiona enter o ingresa 0 para salir del inventario");
+
+        //    int idx = 0;
+        //    bool valid = false;
+
+        //    while (!valid)
+        //    {
+        //        string? rta = Console.ReadLine();
+
+        //        if (string.IsNullOrWhiteSpace(rta) || rta == "0" || (idx - 1) < 1 || idx - 1 > fish.Count)
+        //            return;
+
+        //        valid = int.TryParse(rta, out idx) && (idx >= 1 && idx <= fish.Count);
+        //        if (!valid)
+        //        {
+        //            Display();
+        //            Console.WriteLine("Ingresa un índice válido entre 1 y " + fish.Count);
+        //        }
+        //    }
+
+        //    fish.ElementAt(idx - 1).ToggleFavorite();
+        //    Display();
+        //}
     }
 }

@@ -12,6 +12,7 @@ namespace AFishySituation
         public Rarity rarity;
         protected Random random = new();
 
+        public bool isFavorite = false;
         public void CalculateWeight()
         {
             weight = (float)Math.Ceiling(0.8f + (float)(random.NextDouble() * maxWeight));
@@ -30,6 +31,11 @@ namespace AFishySituation
 
             float weightBonus = 1f + ((float)weight / maxWeight); // Heavier fish are worth more, up to double price at max weight
             return (int)(basePrice * rarityMult * weightBonus);
+        }
+
+        public void ToggleFavorite()
+        {
+            isFavorite = !isFavorite;
         }
     }
 }
