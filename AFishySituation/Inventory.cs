@@ -112,6 +112,7 @@ namespace AFishySituation
             }
             Console.WriteLine(isFull() ? "El inventario está lleno." : $"Espacio utilizado: {fish.Count}/{maxSlots}");
             Console.WriteLine($"Valor total: ${GetTotalValue()}");
+            Console.ReadKey();
 
             //FavoriteFish();
         }
